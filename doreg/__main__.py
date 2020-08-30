@@ -1,12 +1,13 @@
-from .project import Project
-from .argparser import arg_parser
+from .arg_parser import arg_parse
+from doreg.registry import DockerRegistry
 
 
 def main():
-    options, args = arg_parser()
-    project_dir = args[0]
-    proj = Project(options.name, project_dir)
-    proj.create(options.force)
+    options, args = arg_parse()
+    registry = DockerRegistry()
+    if len(args) == 0:
+        for repo in registry.get_repositories():
+            print(repo["name"])
 
 
 if __name__ == "__main__":
