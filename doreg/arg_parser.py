@@ -1,10 +1,10 @@
 import sys
 from optparse import OptionParser
-from setuptools_scm import get_version
+from .version import version
 
 
 def arg_parse():
     usage = f"{sys.argv[0]}"
-    parser = OptionParser(usage, version=get_version())
+    parser = OptionParser(usage, version=version)
     (options, args) = parser.parse_args()
     return (options, args)
